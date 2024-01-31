@@ -7,8 +7,13 @@ import SearchIcon from "@mui/icons-material/Search";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import notification from "../../assets/images/notification.png";
 import userProfile from "../../assets/images/user_profile.png";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const Navbar = ({ isCollapsed, setIsCollapsed }) => {
+  const theme = useTheme();
+  const isSmallDevice = useMediaQuery(theme.breakpoints.up("sm"));
+  const isMediumDevice = useMediaQuery(theme.breakpoints.up("md"));
   return (
     <Box
       display="flex"
@@ -23,20 +28,26 @@ const Navbar = ({ isCollapsed, setIsCollapsed }) => {
             <MenuOutlinedIcon />
           </IconButton>
         </Box>
-        <Box
-          display="flex"
-          backgroundColor="#FAFAFA"
-          borderRadius="4px"
-          border={"1px solid #E0E0E0"}
-        >
-          <InputBase
-            sx={{ ml: 2, flex: 1, padding: "10px 16px" }}
-            placeholder="Search"
-          />
+        {!isSmallDevice ? (
           <IconButton type="button" sx={{ p: 1 }}>
             <SearchIcon />
           </IconButton>
-        </Box>
+        ) : (
+          <Box
+            display="flex"
+            backgroundColor="#FAFAFA"
+            borderRadius="4px"
+            border={"1px solid #E0E0E0"}
+          >
+            <InputBase
+              sx={{ ml: 2, flex: 1, padding: "10px 16px" }}
+              placeholder="Search"
+            />
+            <IconButton type="button" sx={{ p: 1 }}>
+              <SearchIcon />
+            </IconButton>
+          </Box>
+        )}
       </Box>
 
       {/* ICONS */}
@@ -68,9 +79,11 @@ const Navbar = ({ isCollapsed, setIsCollapsed }) => {
               }}
             />
           </IconButton>
-          <Typography variant="h6" fontSize={"16px"} color={"#161E54"}>
-            Aditya Jain
-          </Typography>
+          {isSmallDevice && isMediumDevice && (
+            <Typography variant="h6" fontSize={"16px"} color={"#161E54"}>
+              Aditya Jain
+            </Typography>
+          )}
           <IconButton>
             <KeyboardArrowDownIcon
               sx={{

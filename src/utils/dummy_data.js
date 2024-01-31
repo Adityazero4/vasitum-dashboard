@@ -16,7 +16,7 @@ const firstCard = [
     descriptionColor: "#3786F1",
   },
   {
-    id: 1,
+    id: 3,
     title: "New Employees",
     noOfPosition: 24,
     description: "4 Department",

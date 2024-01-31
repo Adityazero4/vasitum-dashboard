@@ -12,6 +12,8 @@ import HeadsetMicIcon from "@mui/icons-material/HeadsetMic";
 import SettingsIcon from "@mui/icons-material/Settings";
 import mainLogo from "../../assets/images/main_logo.png";
 import toggleLogo from "../../assets/images/toggle_logo.png";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const menuItemStyle = {
@@ -33,40 +35,21 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
 const MainBar = ({ isCollapsed, setIsCollapsed }) => {
   //   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
+  const theme = useTheme();
+  const isSmallDevice = useMediaQuery(theme.breakpoints.up("sm"));
+  const collapseWidth = isSmallDevice ? "80px" : "0px";
 
   return (
     <Box>
       <Sidebar
         collapsed={isCollapsed}
         width="245px"
-        collapsedWidth="80px"
+        collapsedWidth={collapseWidth}
         style={{
           height: "100%",
         }}
       >
         <Menu iconShape="square">
-          {/* LOGO AND MENU ICON */}
-          {/* <MenuItem
-            onClick={() => setIsCollapsed(!isCollapsed)}
-            icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
-            style={{
-              margin: "10px 0 20px 0",
-              color: "#686868",
-            }}
-          >
-            {!isCollapsed && (
-              <Box
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-                ml="15px"
-              
-                <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
-                  <MenuOutlinedIcon />
-                </IconButton>
-              </Box>
-            )}
-          </MenuItem> */}
           <MenuItem
             // onClick={() => setIsCollapsed(!isCollapsed)}
             style={{

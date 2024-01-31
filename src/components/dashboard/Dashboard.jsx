@@ -1,5 +1,11 @@
 import React from "react";
-import { Box, Typography, IconButton, Button } from "@mui/material";
+import {
+  Box,
+  Typography,
+  IconButton,
+  Button,
+  useMediaQuery,
+} from "@mui/material";
 import vector3 from "../../assets/images/vector_3.png";
 import vector2 from "../../assets/images/vector_2.png";
 import frame20 from "../../assets/images/frame_20.png";
@@ -12,14 +18,16 @@ import {
 } from "../../utils/dummy_data";
 import PushPinIcon from "@mui/icons-material/PushPin";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import { useTheme } from "@mui/material/styles";
 
 const Dashboard = () => {
+  const theme = useTheme();
+  const isSmallDevice = useMediaQuery(theme.breakpoints.up("sm"));
   return (
     <Box
       sx={{
         marginTop: "21px",
         marginLeft: "50px",
-        // marginRight: "50px",
       }}
     >
       <Box
@@ -39,10 +47,19 @@ const Dashboard = () => {
           Dashboard
         </Typography>
       </Box>
-      <Box display={"flex"} flexDirection={"row"} gap={"30px"}>
+      <Box
+        display={"flex"}
+        flexDirection={"row"}
+        gap={"30px"}
+        flexWrap={"wrap"}
+      >
         {/* Left */}
         <Box display={"flex"} flexDirection={"column"} gap={"20px"}>
-          <Box display={"flex"} flexDirection={"row"} gap={"14px"}>
+          <Box
+            display={"flex"}
+            flexDirection={!isSmallDevice ? "column" : "row"}
+            gap={"14px"}
+          >
             {firstCard.map((item, index) => {
               return (
                 <Box
@@ -53,6 +70,7 @@ const Dashboard = () => {
                     justifyContent: "center",
                     alignItems: "flex-start",
                     width: "204px",
+                    width: !isSmallDevice ? "350px" : "204px",
                     height: "136px",
                     gap: "3px",
                     borderRadius: "10px",
@@ -93,7 +111,11 @@ const Dashboard = () => {
             })}
           </Box>
 
-          <Box display={"flex"} flexDirection={"row"} gap={"16px"}>
+          <Box
+            display={"flex"}
+            flexDirection={!isSmallDevice ? "column" : "row"}
+            gap={"16px"}
+          >
             {secondCard.map((item, index) => {
               return (
                 <Box
@@ -101,6 +123,7 @@ const Dashboard = () => {
                   sx={{
                     backgroundColor: "#FFF",
                     width: "312px",
+                    width: !isSmallDevice ? "350px" : "312px",
                     padding: "20px",
                     display: "flex",
                     alignItems: "center",
@@ -229,6 +252,7 @@ const Dashboard = () => {
                 border: " 1px solid #E0E0E0",
                 backgroundColor: "#FFF",
                 width: "640px",
+                width: !isSmallDevice ? "350px" : "640px",
                 height: "auto",
                 borderRadius: "12px",
                 // padding: "20px",
@@ -390,7 +414,12 @@ const Dashboard = () => {
         </Box>
 
         {/* Right */}
-        <Box display={"flex"} flexDirection={"column"} gap={"20px"}>
+        <Box
+          display={"flex"}
+          flexDirection={"column"}
+          gap={"20px"}
+          flexWrap={"wrap"}
+        >
           <Box
             sx={{
               display: "flex",
@@ -400,7 +429,8 @@ const Dashboard = () => {
               backgroundColor: "#161E54",
               borderRadius: "10px",
               width: "427px",
-              height: "258px",
+              width: !isSmallDevice ? "350px" : "427px",
+              height: !isSmallDevice ? "auto" : "258px",
               flexShrink: 0,
               color: "#FFF",
             }}
@@ -470,8 +500,10 @@ const Dashboard = () => {
               border: " 1px solid #E0E0E0",
               backgroundColor: "#FFF",
               width: "427px",
+              width: !isSmallDevice ? "350px" : "427px",
               height: "auto",
               borderRadius: "12px",
+              marginBottom: "20px",
               // padding: "20px",
               gap: "16px",
               flexGrow: 1,
@@ -483,7 +515,6 @@ const Dashboard = () => {
                 flexDirection: "row",
                 justifyContent: "space-between",
                 alignItems: "center",
-                marginBottom: "20px",
                 padding: "20px 20px 0 20px",
               }}
             >
