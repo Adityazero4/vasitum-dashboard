@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { CssBaseline } from "@mui/material";
+import MainBar from "./components/Global/MainBar";
+import Navbar from "./components/Global/Navbar";
+import Dashboard from "./components/dashboard/Dashboard";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
+  const [isCollapsed, setIsCollapsed] = useState(false);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <CssBaseline />
+      <div className="app">
+        <MainBar isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
+        <main className="content">
+          <Navbar isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+          </Routes>
+        </main>
+      </div>
+    </>
   );
 }
 
