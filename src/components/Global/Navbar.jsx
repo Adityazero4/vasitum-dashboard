@@ -13,7 +13,10 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 const Navbar = ({ isCollapsed, setIsCollapsed }) => {
   const theme = useTheme();
   const isSmallDevice = useMediaQuery(theme.breakpoints.up("sm"));
-  const isMediumDevice = useMediaQuery(theme.breakpoints.up("md"));
+  const isMediumDevice = useMediaQuery(
+    "(min-width: 768px) and (max-width: 1023px)"
+  );
+
   return (
     <Box
       display="flex"
@@ -79,7 +82,7 @@ const Navbar = ({ isCollapsed, setIsCollapsed }) => {
               }}
             />
           </IconButton>
-          {isSmallDevice && isMediumDevice && (
+          {isSmallDevice && !isMediumDevice && (
             <Typography variant="h6" fontSize={"16px"} color={"#161E54"}>
               Aditya Jain
             </Typography>

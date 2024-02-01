@@ -23,6 +23,12 @@ import { useTheme } from "@mui/material/styles";
 const Dashboard = () => {
   const theme = useTheme();
   const isSmallDevice = useMediaQuery(theme.breakpoints.up("sm"));
+  const isMediumDevice = useMediaQuery(
+    "(min-width: 768px) and (max-width: 1023px)"
+  );
+
+  // Define flex direction based on device size
+  const flexDirectionRight = isMediumDevice ? "row" : "column";
   return (
     <Box
       sx={{
@@ -416,9 +422,10 @@ const Dashboard = () => {
         {/* Right */}
         <Box
           display={"flex"}
-          flexDirection={"column"}
+          // flexDirection={"column"}
+          flexDirection={flexDirectionRight}
           gap={"20px"}
-          flexWrap={"wrap"}
+          // flexWrap={"wrap"}
         >
           <Box
             sx={{
@@ -429,8 +436,17 @@ const Dashboard = () => {
               backgroundColor: "#161E54",
               borderRadius: "10px",
               width: "427px",
-              width: !isSmallDevice ? "350px" : "427px",
-              height: !isSmallDevice ? "auto" : "258px",
+              width: isMediumDevice
+                ? "250px"
+                : !isSmallDevice
+                ? "350px"
+                : "427px",
+              // height: !isSmallDevice ? "auto" : "258px",
+              height: isMediumDevice
+                ? "319px"
+                : !isSmallDevice
+                ? "auto"
+                : "258px",
               flexShrink: 0,
               color: "#FFF",
             }}
@@ -500,7 +516,12 @@ const Dashboard = () => {
               border: " 1px solid #E0E0E0",
               backgroundColor: "#FFF",
               width: "427px",
-              width: !isSmallDevice ? "350px" : "427px",
+              // width: !isSmallDevice ? "350px" : "427px",
+              width: isMediumDevice
+                ? "374px"
+                : !isSmallDevice
+                ? "350px"
+                : "427px",
               height: "auto",
               borderRadius: "12px",
               marginBottom: "20px",
